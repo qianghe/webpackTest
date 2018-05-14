@@ -5,17 +5,22 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
+const isProduct = process.env.NODE_ENV === 'production';
+
 module.exports = {
   entry: {
     main: path.resolve(__dirname, './src/app.jsx'),
   },
   output: {
-    filename: 'static/[name].[chunkhash].js',
+    filename: isProduct ? 'static/[name].[chunkhash].js' : 'static/[name].js',
     path: path.resolve(__dirname, './dist'),
+    chunkFilename : isProduct ? 'static/[id].[chunkhash:7].js' : 'static/[id].js',
   },
-  devtool: '#eval',
   resolve: {
     extensions: [".js", ".jsx" ,".json"],
+    alias: {
+      "@src": path.resolve(__dirname, './src'),
+    },
     modules: [
       path.resolve(__dirname, './src'),
       'node_modules'
@@ -51,6 +56,11 @@ module.exports = {
       template: path.resolve(__dirname, './template.html'),
       inject: 'body',
     }),
+    new ExtractTextPlugin({
+      filename:'static/[name].[contenthash].css',
+      disable: isProduct,
+    }),
+    new webpack.HashedModuleIdsPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       minChunks: function (module, count) {
@@ -61,11 +71,15 @@ module.exports = {
         )
       }
     }),
-    // new webpack.optimize.CommonsChunkPlugin({
-    //   name: 'manifest',
-    // }),
-    new ExtractTextPlugin({
-      filename: 'static/[name].[contenthash].css',
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'manifest',
+      chunks: ['vendor'],
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'app',
+      children: true,
+      async: true,
+      minChunks: 2,
     }),
     // new BundleAnalyzerPlugin()
   ]
