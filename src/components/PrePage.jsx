@@ -15,4 +15,4 @@ class PrePage extends Component {
   }
 }
 
-export default NextPage;
+export default PrePage;

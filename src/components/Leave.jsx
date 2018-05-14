@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const Leave = () => (
-  <h3>leave message</h3>
-)
+class Leave extends Component {
+  state = {}
+  render() {
+    return (
+      <h3>leave message</h3>
+    );
+  }
+}
 
 export default Leave;

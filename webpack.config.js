@@ -76,12 +76,11 @@ module.exports = {
       chunks: ['vendor'],
     }),
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'app',
       children: true,
       async: true,
       minChunks: 2,
     }),
-    // new BundleAnalyzerPlugin()
+    new BundleAnalyzerPlugin()
   ]
   // optimization: {
   //   splitChunks: {

@@ -1,18 +1,12 @@
 import React, { Componet } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import Loadable from 'react-loadable';
+// import Loadable from 'react-loadable';
+import asyncComponent from '@src/components/Common/asyncComponent'
 import Content from '@src/components/Content';
-import Loading from '@src/components/Common/Loading';
 import './index.css';
 
-const LoadableNextPage = Loadable({
-  loader: () => import('@src/components/NextPage'),
-  loading: Loading,
-});
-const LoadablePrePage = Loadable({
-  loader: () => import('@src/components/prePage'),
-  loading: Loading,
-});
+const LoadablePrePage = asyncComponent(() => import('@src/components/PrePage'));
+const LoadableNextPage = asyncComponent(() => import('@src/components/NextPage'));
 
 const menus = [{
   name: 'content',
