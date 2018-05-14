@@ -1,0 +1,37 @@
+{
+  "name": "ads-manager",
+  "version": "1.0.0",
+  "description": "react16 context use",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --config webpack.config.js"
+  },
+  "repository": {
+    "type": "git"
+  },
+  "author": "heqiang",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-runtime": "^6.26.0",
+    "clean-webpack-plugin": "^0.1.19",
+    "cross-env": "^5.1.5",
+    "css-loader": "^0.28.11",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "html-webpack-plugin": "^3.2.0",
+    "postcss-loader": "^2.1.1",
+    "style-loader": "^0.21.0",
+    "webpack": "^3.11.0",
+    "webpack-bundle-analyzer": "^2.11.3",
+    "webpack-dev-server": "^2.11.2"
+  },
+  "dependencies": {
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2"
+  }
+}
