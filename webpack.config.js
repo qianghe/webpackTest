@@ -76,7 +76,7 @@ module.exports = {
       chunks: ['vendor'],
     }),
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'app',
+      name: 'main',
       children: true,
       async: true,
       minChunks: 2,
